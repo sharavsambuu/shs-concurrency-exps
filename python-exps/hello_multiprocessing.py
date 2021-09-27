@@ -8,6 +8,7 @@
 # - шинэ процесс үүсгэнэ гэдэг нь ганцхан хичээл заах гэж шинээр сургуулийн барилга 
 #   барьж ороод, хичээлээ зааж дууссаныхаа сургуулиа нураагаад дахиад шинээр
 #   барилга барихыг оролдож байна л гэсэн үг.
+#
 # - харин thread гэдэг бол арай хөнгөн жингийн процесс бөгөөд боловсролын бизнес
 #   эрхлэхийн тулд ашиглахаар хөлсөлсөн нэг багш л гэсэн үг. Thread үүсгэж ашиглах нь
 #   шинээр барилга барихтай харьцуулбал шинээр багш хөлслөөд буцаагаад халахтай адил 
@@ -17,12 +18,11 @@
 
 import time
 import random
-import ctypes
 import multiprocessing
 
 
 # Төсөөллийн SoA ECS бүтэц
-ENTITY_SIZE      = 1000000
+ENTITY_SIZE      = 50000
 entity_positions = [
     [random.uniform(0, 100), random.uniform(0, 100)]
     for i in range(0, ENTITY_SIZE)
@@ -52,7 +52,7 @@ if __name__ == '__main__':
 
     # Төсөөллийн тоглоомын цикл
     for i in range(20):
-        with multiprocessing.Pool(8) as p:
+        with multiprocessing.Pool(4) as p:
             new_positions = p.map(
                 move_task, 
                 [(entity_idx, entity) 

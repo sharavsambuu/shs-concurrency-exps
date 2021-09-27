@@ -1,7 +1,16 @@
+#
+# дараалсан боловсруулалт болон multiprocessing-тэй харьцуулбал thread дээрхи
+# боловсруулалт тун удаан ажиллаж байна, яагаад гэвэл python хэлний thread
+# бол GIL буюу Global Interpreter Lock-ийн нөлөөгөөр CPU core болгон дээр зэрэгцээ 
+# ажиллах боломжгүй зөвхөн нэг процесс дотор context switch хийж ажилладаг 
+# хийсвэр үйл ажиллагаа юм, эндээс мөн contex switch олон хийх бас нилээд
+# өртөгтэй үйл ажиллагаа юм гэдгийг анзаарч болохоор байна
+#
+#
+
 import time
 import random
-import ctypes
-import multiprocessing
+import concurrent.futures
 
 
 # Төсөөллийн SoA ECS бүтэц
@@ -35,10 +44,12 @@ if __name__ == '__main__':
 
     # Төсөөллийн тоглоомын цикл
     for i in range(20):
-        new_positions = []
-        for entity_idx, entity in enumerate(zip(entity_positions, entity_velocities)):
-            new_positions.append(move_task((entity_idx, entity)))
-
+        with concurrent.futures.ThreadPoolExecutor(4) as p:
+            new_positions = p.map(
+                move_task, 
+                [(entity_idx, entity) 
+                for entity_idx, entity
+                in enumerate(zip(entity_positions, entity_velocities))])
         # Шинэ байрлалуудын дагуу өмнөх утгуудаа шинэчилэх
         for entity_idx, position in new_positions:
             entity_positions[entity_idx][0] = position[0]
@@ -47,4 +58,3 @@ if __name__ == '__main__':
         print(f"DEBUG position<x={entity_positions[0][0]}, y={entity_positions[0][1]}>")
 
     print(f"elapsed time to process {ENTITY_SIZE} entities : {time.time()-start_time}")
-    
