@@ -1,5 +1,0 @@
-/home/sharavsambuu/src/exps/shs-concurrency-exps/build/CMakeFiles/rebuild_cache.dir
-/home/sharavsambuu/src/exps/shs-concurrency-exps/build/CMakeFiles/edit_cache.dir
-/home/sharavsambuu/src/exps/shs-concurrency-exps/build/src/hello-threads/CMakeFiles/rebuild_cache.dir
-/home/sharavsambuu/src/exps/shs-concurrency-exps/build/src/hello-threads/CMakeFiles/edit_cache.dir
-/home/sharavsambuu/src/exps/shs-concurrency-exps/build/src/hello-threads/CMakeFiles/HelloThreads.dir
