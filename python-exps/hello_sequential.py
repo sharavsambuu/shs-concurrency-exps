@@ -35,12 +35,10 @@ if __name__ == '__main__':
 
     # Төсөөллийн тоглоомын цикл
     for i in range(20):
-        with multiprocessing.Pool(8) as p:
-            new_positions = p.map(
-                move_task, 
-                [(entity_idx, entity) 
-                for entity_idx, entity
-                in enumerate(zip(entity_positions, entity_velocities))])
+        new_positions = []
+        for entity_idx, entity in enumerate(zip(entity_positions, entity_velocities)):
+            new_positions.append(move_task((entity_idx, entity)))
+
         # Шинэ байрлалуудын дагуу өмнөх утгуудаа шинэчилэх
         for entity_idx, position in new_positions:
             entity_positions[entity_idx][0] = position[0]
