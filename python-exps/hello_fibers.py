@@ -20,6 +20,8 @@ import time
 import random
 import asyncio
 import multiprocessing
+import uvloop
+
 
 
 # Төсөөллийн SoA ECS бүтэц
@@ -59,6 +61,7 @@ async def fibers_run(data):
 
 
 def process_run(data):
+    uvloop.install()
     loop    = asyncio.get_event_loop()
     return loop.run_until_complete(fibers_run(data))
 

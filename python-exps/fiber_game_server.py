@@ -12,6 +12,7 @@ import uu
 import uuid
 import asyncio
 import multiprocessing
+import uvloop
 
 
 
@@ -35,6 +36,8 @@ async def game_room_fiber():
 
 # дотроо тоглоомын өрөөнүүд ажиллуулж байх нэг процесс
 def worker_process(queue_in, queue_out):
+    uvloop.install()
+
     process_id = os.getpid()
     print(f"#WORKER_{process_id} : process is spawned")
 

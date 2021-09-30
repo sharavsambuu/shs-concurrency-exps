@@ -18,6 +18,8 @@
 import time
 import random
 import asyncio
+import uvloop
+
 
 
 # Төсөөллийн SoA ECS бүтэц
@@ -60,6 +62,7 @@ async def run():
 
 if __name__ == '__main__':
     start_time = time.time()
+    uvloop.install()
 
     # Төсөөллийн тоглоомын цикл
     for i in range(20):
