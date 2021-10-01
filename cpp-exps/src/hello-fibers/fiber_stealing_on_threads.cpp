@@ -36,7 +36,8 @@ void worker_fiber(char me) {
     }
 
     for (int i=0; i<100; ++i) {
-        boost::this_fiber::yield();
+        //boost::this_fiber::yield();
+        boost::this_fiber::sleep_for(100ms);
 
         // энэ fiber-ийг өөр thread дээр шилжүүлсэн эсэхийг илрүүлэх
         std::thread::id new_thread_id = std::this_thread::get_id();
