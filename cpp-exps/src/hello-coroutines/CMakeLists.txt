@@ -15,8 +15,12 @@ endif()
 add_executable(HelloCoroutinesBoost hello_coroutines_boost.cpp)
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})
-#target_link_libraries(HelloCoroutinesBoost PRIVATE ${Boost_LIBRARIES})
-target_link_libraries(HelloCoroutinesBoost PRIVATE -lboost_coroutine -lboost_context -lboost_system)
+
+if(WIN32)
+    target_link_libraries(HelloCoroutinesBoost ${Boost_LIBRARIES})
+else()
+    target_link_libraries(HelloCoroutinesBoost PRIVATE -lboost_coroutine -lboost_context -lboost_system)
+endif()
 
 
 
