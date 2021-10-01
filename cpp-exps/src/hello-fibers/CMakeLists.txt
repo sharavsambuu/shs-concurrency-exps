@@ -21,11 +21,23 @@ target_link_libraries(HelloFibersBoost
     )
 
 
-# running fabers on various threads experiment
+# running fibers on various threads experiment
 add_executable(FiberSharingOnThreads fiber_sharing_on_threads.cpp)
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})
 target_link_libraries(FiberSharingOnThreads
+    -lboost_fiber
+    -lboost_thread
+    -lboost_context 
+    -lboost_system 
+    -lpthread
+    )
+
+# running fibers on various threads with job stealing mode
+add_executable(FiberStealingOnThreads fiber_stealing_on_threads.cpp)
+include_directories(${Boost_INCLUDE_DIR})
+link_directories(${Boost_LIBRARY_DIR})
+target_link_libraries(FiberStealingOnThreads
     -lboost_fiber
     -lboost_thread
     -lboost_context 
