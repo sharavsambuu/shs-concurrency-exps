@@ -5,6 +5,8 @@
 
 # libraries
 
+    sudo apt install libboost-all-dev
+    
 
 
 # references
