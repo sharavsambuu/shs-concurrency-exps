@@ -6,14 +6,18 @@ set(CMAKE_CXX_STANDARD 20)
 
 
 find_package(Boost COMPONENTS REQUIRED)
-if(Boost_FOUND)
-    message(STATUS "Boost libary is found")
-endif()
+
+#set(Boost_USE_STATIC_LIBS ON)
 
 add_executable(HelloFibersBoost hello_fibers_boost.cpp)
 include_directories(${Boost_INCLUDE_DIR})
 link_directories(${Boost_LIBRARY_DIR})
-target_link_libraries(HelloFibersBoost PRIVATE -lboost_fiber -lboost_context -lboost_system)
+target_link_libraries(HelloFibersBoost 
+    -lboost_fiber
+    -lboost_thread
+    -lboost_context 
+    -lboost_system 
+    )
 
 
 
