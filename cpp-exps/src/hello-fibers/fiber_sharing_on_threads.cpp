@@ -39,8 +39,8 @@ void worker_fiber(char me) {
     }
 
     for (int i=0; i<100; ++i) {
-        //boost::this_fiber::sleep_for(200ms);
-        boost::this_fiber::yield();
+        boost::this_fiber::sleep_for(200ms);
+        //boost::this_fiber::yield();
 
         // энэ fiber-ийг өөр thread дээр шилжүүлсэн эсэхийг илрүүлэх
         std::thread::id new_thread_id = std::this_thread::get_id();
@@ -48,6 +48,10 @@ void worker_fiber(char me) {
             thread_id = new_thread_id;
             std::ostringstream buffer;
             buffer<<"fiber "<<me<<" is switched to thread "<<thread_id<<"\n";
+            std::cout<<buffer.str()<<std::flush;
+        } else {
+            std::ostringstream buffer;
+            buffer<<"fiber "<<me<<" is running on thread "<<thread_id<<"\n";
             std::cout<<buffer.str()<<std::flush;
         }
     }

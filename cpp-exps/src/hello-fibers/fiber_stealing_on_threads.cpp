@@ -46,6 +46,10 @@ void worker_fiber(char me) {
             std::ostringstream buffer;
             buffer<<"fiber "<<me<<" is switched to thread "<<thread_id<<"\n";
             std::cout<<buffer.str()<<std::flush;
+        } else {
+            std::ostringstream buffer;
+            buffer<<"fiber "<<me<<" is running on thread "<<thread_id<<"\n";
+            std::cout<<buffer.str()<<std::flush;
         }
     }
 
