@@ -1,13 +1,13 @@
 project(HelloFibers)
 
 
-set(CMAKE_CXX_STANDARD 20)
+#set(CMAKE_CXX_STANDARD 20)
 #set(CMAKE_CXX_FLAGS "-fcoroutines")
 
 
 find_package(Boost REQUIRED COMPONENTS)
 
-#set(Boost_USE_STATIC_LIBS ON)
+set(Boost_USE_STATIC_LIBS ON)
 
 # general fiber experiments
 add_executable(HelloFibersBoost hello_fibers_boost.cpp)

@@ -1,5 +1,13 @@
 #include <iostream>
+#include <thread>
+#include <mutex>
+#include <string>
+#include <sstream>
+#include <chrono>
+#include <condition_variable>
 #include <boost/fiber/all.hpp>
+#include <boost/fiber/barrier.hpp>
+
 
 void fn(std::string const& str, int n) {
     for (int i=0; i<n; ++i) {
@@ -33,7 +41,7 @@ void cooperative_fn2() {
     std::cout<<"fiber_2 is done to do its job."<<std::endl;
 }
 
-int main(int argc, char const *argv[]) {
+int main() {
     auto fiber = boost::fibers::fiber([] () {
         std::cout << "Hello World from Boost::Fiber" << std::endl;
     });

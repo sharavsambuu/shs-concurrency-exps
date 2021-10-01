@@ -1,4 +1,4 @@
-set(SDL2_DIR $ENV{SDL2_PATH})
+set(Boost_DIR $ENV{BOOST_PATH})
 
 message(STATUS "setting up Boost Path: $ENV{BOOST_PATH}")
 
