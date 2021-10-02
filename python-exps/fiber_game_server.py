@@ -2,6 +2,16 @@
 # fiber эгэлээр төсөөллийн тоглоомын сервер ажиллуулах туршилт
 # нэг процесс дотор олон тоглоомын сервэр ажиллуулж байна гэсэн үг
 #
+# Жишээлбэл нэг PC-ны процессор 4-н цөмтэй байна гэж үзье тэгвэл
+# процессорын цөм бүрт нь нэг OS процесс ажиллагаанд оруулаад тэр
+# процесс бүр нь тус бүрдээ хэдэн мянган тоглоомын өрөөнүүдийг
+# cooperative concurrent горимоор stackful coroutine буюу fiber
+# ашиглан хэрэгжүүлэх боломжтой юм цаашлаад хэрвээ ZeroMQ ч юм уу
+# redis хэрэглээд өрөө тус бүр нь өөрсдийн гэсэн message system 
+# хэрэглээд эхэлбэл цаашаагаа системийг бүхэлд нь scale хийх нь
+# бараг л хязгааргүй гэсэн үг, нэмж өргөтгөөд дахиад PC холбоод
+# ч тавьж болно гэсэн үг.
+#
 #
 
 import time
@@ -42,7 +52,7 @@ def worker_process(queue_in, queue_out):
     print(f"#WORKER_{process_id} : process is spawned")
 
     # 2 ширхэг өрөө
-    game_room_fibers = [asyncio.Task(game_room_fiber()) for i in range(1)]
+    game_room_fibers = [asyncio.Task(game_room_fiber()) for i in range(2)]
 
     async def worker_fiber():
         while (True):
