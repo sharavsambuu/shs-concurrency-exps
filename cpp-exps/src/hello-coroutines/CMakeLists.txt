@@ -15,7 +15,7 @@ add_executable(CoawaitFuture coawait_future.cpp)
 target_link_libraries(CoawaitFuture Threads::Threads)
 
 add_executable(HelloCoroutines hello_coroutines.cpp)
-target_link_libraries(HelloCoroutines -fcoroutines)
+target_link_libraries(HelloCoroutines -fcoroutines Threads::Threads)
 
 
 find_package(Boost COMPONENTS REQUIRED)
