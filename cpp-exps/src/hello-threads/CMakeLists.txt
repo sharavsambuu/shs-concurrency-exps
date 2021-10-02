@@ -13,3 +13,6 @@ add_executable(HelloThreads hello_threads.cpp)
 target_link_libraries(HelloThreads Threads::Threads)
 
 
+# Problems in threading
+add_executable(ProblemoThreads problemo_threads.cpp)
+target_link_libraries(ProblemoThreads Threads::Threads)
