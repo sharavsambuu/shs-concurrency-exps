@@ -5,7 +5,8 @@
 
 # libraries
 
-    sudo apt install libboost-all-dev
+    sudo apt install gcc-11 g++-11 libboost-all-dev
+    sudo update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-11 60 --slave /usr/bin/g++ g++ /usr/bin/g++-11
     
 
 
