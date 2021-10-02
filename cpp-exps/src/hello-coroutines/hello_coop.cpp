@@ -13,7 +13,8 @@
 coop::task_t<> game_logic_update() {
     co_await coop::suspend();
     for (int i=0; i<10; ++i) {
-        std::cout<<"game logic coroutine is running..."<<std::endl;
+        auto thread_id = std::this_thread::get_id();
+        std::cout<<"thread_"<<thread_id<<" : game logic coroutine is running..."<<std::endl;
         co_await coop::suspend(); // lets be nice with each other
         std::this_thread::sleep_for(std::chrono::milliseconds{1300});
     }
@@ -22,7 +23,8 @@ coop::task_t<> game_logic_update() {
 coop::task_t<> game_physics_update() {
     co_await coop::suspend();
     for (int i=0; i<7; ++i) {
-        std::cout<<"game physics coroutine is running..."<<std::endl;
+        auto thread_id = std::this_thread::get_id();
+        std::cout<<"thread_"<<thread_id<<" : game physics coroutine is running..."<<std::endl;
         co_await coop::suspend(); // of course i'm nice coroutine
         std::this_thread::sleep_for(std::chrono::milliseconds{1500});
     }
@@ -31,7 +33,8 @@ coop::task_t<> game_physics_update() {
 coop::task_t<> game_rendering_update() {
     co_await coop::suspend();
     for (int i=0; i<15; ++i) {
-        std::cout<<"game rendering coroutine is running..."<<std::endl;
+        auto thread_id = std::this_thread::get_id();
+        std::cout<<"thread_"<<thread_id<<" : game rendering coroutine is running..."<<std::endl;
         co_await coop::suspend(); // letting the others do something useful
         std::this_thread::sleep_for(std::chrono::milliseconds{700});
     }
