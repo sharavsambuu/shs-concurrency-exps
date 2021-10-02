@@ -8,6 +8,8 @@ set(CMAKE_CXX_FLAGS "-fcoroutines")
 add_executable(HelloCoop hello_coop.cpp)
 target_link_libraries(HelloCoop coop::coop Threads::Threads)
 
+add_executable(StressingCoop stressing_coop.cpp)
+target_link_libraries(StressingCoop coop::coop Threads::Threads)
 
 add_executable(HelloCoroutines hello_coroutines.cpp)
 target_link_libraries(HelloCoroutines -fcoroutines)
